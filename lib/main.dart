@@ -3,6 +3,7 @@ import 'package:quiz_app/screens/landing_screen.dart';
 import 'package:quiz_app/screens/questions_screen.dart';
 import 'dart:io' show Platform;
 
+import 'package:quiz_app/screens/score_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'quiz app',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screens/score_screen.dart';
 
 class QuestionsScreen extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class QuestionsScreen extends StatelessWidget {
         ],
         title: Text("Quiz app"),
         // centerTitle: false,
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: Color.fromARGB(255, 139, 198, 171),
       ),
       body: Padding(
         padding: const EdgeInsets.all(22),
@@ -47,10 +48,38 @@ class QuestionsScreen extends StatelessWidget {
               SizedBox(
                 height: 22,
               ),
-              ElevatedButton(onPressed: () {}, child: Text("USA")),
-              ElevatedButton(onPressed: () {}, child: Text("Qatar")),
-              ElevatedButton(onPressed: () {}, child: Text("France")),
-              ElevatedButton(onPressed: () {}, child: Text("Egypt")),
+              ElevatedButton(onPressed: () {
+                    Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => ScoreScreen(),
+                  ),
+                );
+              }, child: Text("USA")),
+              ElevatedButton(onPressed: () {
+                         Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => ScoreScreen(),
+                  ),
+                );
+              }, child: Text("Qatar")),
+              ElevatedButton(onPressed: () {
+                         Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => ScoreScreen(),
+                  ),
+                );
+              }, child: Text("France")),
+              ElevatedButton(onPressed: () {
+                         Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => ScoreScreen(),
+                  ),
+                );
+              }, child: Text("Egypt")),
             ],
           ),
         ),

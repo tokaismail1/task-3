@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screens/questions_screen.dart';
 
 class CategoryCard extends StatelessWidget {
   final String quizName;
@@ -14,9 +15,17 @@ class CategoryCard extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        color:quizColor,
-        child: Center(child: Text(quizName)),
+      child: InkWell(
+        onTap: () =>Navigator.push
+        (context,
+        MaterialPageRoute<void>(builder: 
+        (BuildContext)
+        => QuestionsScreen())
+        ) ,
+        child: Container(
+          color:quizColor,
+          child: Center(child: Text(quizName ,style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700))),
+        ),
       ),
     );
   }
