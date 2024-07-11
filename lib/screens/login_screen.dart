@@ -1,135 +1,172 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screens/category_screen.dart';
+import 'package:quiz_app/utils/globals.dart';
 import '../utils/icons.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
 
+  final _formKey = GlobalKey<FormState>();
+  final userNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 45, 109, 47),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Image.asset(
-                  alien,
-                  height: 160,
-                  width: 160,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 45, 112, 48),
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height ,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 50),
+                    child: Image.asset(
+                      alien,
+                      height: 100,
+                      width: 150,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(25),
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 2 / 3,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 243, 242, 242),
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(50))),
-              child: Column(
-                children: [
-                  Text(
-                    'Login',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextField(
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.person),
-                          hintText: 'username',
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(width: 1),
-                              borderRadius: BorderRadius.circular(40)))),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextField(
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.visibility_off),
-                          hintText: 'password',
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(width: 1),
-                              borderRadius: BorderRadius.circular(40)))),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      //Spacer(),
-                      Text('New to quiz app?'),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Register',
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 2 / 3,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(30))),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Login",
                           style: TextStyle(
-                              color: Colors.green, fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold, fontSize: 40),
                         ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                      width: 200,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            elevation: 10,
-                            backgroundColor: Colors.green,
-                            foregroundColor: Colors.white,
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                    const CatogeryScreen(),
-                              ),
-                            );
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: userNameController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Username field can not be empty';
+                            } else if (value.length < 3) {
+                              return 'Username must be more than or equal to 3 characters';
+                            }
                           },
-                          child: Text(
-                            'Login',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ))),
-                  SizedBox(
-                    height: 18,
+                          decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.person),
+                              hintText: 'username',
+                              border: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30))),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Password field can not be empty';
+                            } else if (value.length < 6) {
+                              return 'password must be more than or equal to 6 characters';
+                            }
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.lock),
+                              suffixIcon: const Icon(Icons.visibility_off),
+                              hintText: 'password',
+                              border: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30))),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            // Spacer(),
+                            const Text("New to quiz app?"),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Register",
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                maximumSize: const Size(300, 40),
+                                minimumSize: const Size(200, 40),
+                                elevation: 10,
+                                backgroundColor: Colors.green,
+                                foregroundColor: Colors.white),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                userName = userNameController.text;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        CategoryScreen(),
+                                  ),
+                                );
+                              }
+                            },
+                            child: const Text(
+                              'login',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        Image.asset(
+                          fingerprint,
+                          height: 40,
+                          width: 50,
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const Text(
+                          'Use touch id',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        const Spacer(),
+                        Row(
+                          children: [
+                            Checkbox(value: true, onChanged: (val) {}),
+                            const Text('Remember me'),
+                            const Spacer(),
+                            TextButton(
+                                onPressed: () {},
+                                child: const Text('Forget password'))
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                  Image.asset(
-                    fingerprint,
-                    height: 50,
-                    width: 50,
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Text(
-                    'Use Touch ID',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  Spacer(),
-                  Row(
-                    children: [
-                      Checkbox(value: true, onChanged: (val) {}),
-                      Text('Remember me'),
-                      Spacer(),
-                      TextButton(
-                          onPressed: () {}, child: Text('Forget Password?'))
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
